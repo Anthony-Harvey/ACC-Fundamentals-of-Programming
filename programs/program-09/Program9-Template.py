@@ -2,9 +2,9 @@
 #
 #  Author:            <Your name>
 #
-#  Program #:         7
+#  Program #:         9
 #
-#  File Name:         Program7.py
+#  File Name:         Program9.py
 #
 #  Course:            COSC 1336 Programming Fundamentals I 
 #
@@ -20,19 +20,18 @@
 #********************************************************************
 def main():
     
-    inFile = open('program7.txt', 'r')
+    inFile = open('program9.txt', 'r')
     
-    lineRead = inFile.readline()
-    while lineRead != '':
-       words = lineRead.split() 
-       for word in words:
-          num = float(word)
-          print(format(num, '.2f'))
-          
-       lineRead = inFile.readline()
+    lineRead = inFile.readline()       # Read first record
+    while lineRead != '':              # While there are more records
+       words = lineRead.split()        # Split the records into substrings
+       annualRainfall = float(words[0])
+       print(format(annualRainfall, '.2f'))
+       
+       lineRead = inFile.readline()    # Read next record
        
     # Close the file.
-    inFile.close()
+    inFile.close() # Close file
     
 # Call the main function.
 main()
