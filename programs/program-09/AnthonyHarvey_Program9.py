@@ -39,10 +39,11 @@
 ############################################################################
 
 def main():
-    userInput()
-    rainfall_List_Accumulator = data_Input()
+    #userInput()
+    data_Input()
+    #rainfall_List_Accumulator = data_Input()
     highest_Rainfall, lowest_Rainfall, = rainfall_Calculations()
-
+    #data_Output()
 
 def data_Input():
     rainfall_List = []
@@ -52,33 +53,32 @@ def data_Input():
     line_Read = data.readline()
     while line_Read != '':
         words = line_Read.split()
-        print("Words Debug:", words)
-        #words_Fix= float(words.replace("'"))
-        #rainfall_List_Accumulator += words_Fix
-        # This seems to have an issue. Float() cant handle the data type here.
+        words_Fix = float(words[0])
+        print(words_Fix)
+        rainfall_List_Accumulator += words_Fix
         
         # Create a list of months and compare the indices to the text files monthly listings.
         # Then return those values to main(), where it will then be forwarded to the
-        # rainfall_Calculations function.
-        #print("After rainfall_accumulator Debugging:", words)
-        line_Read = data.readline()
-        rainfall_List_Accumulator = 100
+        # rainfall_Calculations function
 
-    return(rainfall_List_Accumulator)
+        line_Read = data.readline()
+
+    print(rainfall_List_Accumulator)
+    #return(rainfall_List_Accumulator)
  
 def rainfall_Calculations():
-    avg_Monthly = rainfall_List_Accumulator / 12
-    highest_Rainfall = index(max(rainfall_List))
-    lowest_Rainfall = index(min(rainfall_List))
+    #avg_Monthly = rainfall_List_Accumulator / 12
+    #highest_Rainfall = index(max(rainfall_List))
+    #lowest_Rainfall = index(min(rainfall_List))
         
 
-def data_Output():
-    print("Blah blah:", rainfall_List_Accumulator)
-    print("Blah Blah:", avg_Monthly)
-    print("Blah:", highest_Rainfall)
-    print("Blah:", lowest_Rainfall)
+#def data_Output():
+    #print("Blah blah:", rainfall_List_Accumulator)
+    #print("Blah Blah:", avg_Monthly)
+    #print("Blah:", highest_Rainfall)
+    #print("Blah:", lowest_Rainfall)
+    #print("data_Output test!")
 
-def userInput():
-	print("Anthony Harvey, 2018-07-17")
-
+#def userInput():
+    #print("Anthony Harvey - 2018-07-17")
 main()
