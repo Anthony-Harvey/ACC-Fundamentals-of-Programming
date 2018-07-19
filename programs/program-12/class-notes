@@ -1,0 +1,50 @@
+These notes are from 2018/07/18.
+
+Bonus Program information:
+    The homework for chapter 10 will be helpful for understanding the bonus programs intended layout.
+    
+    
+    
+
+
+
+
+
+PSEUDOCODE: rough draft for program 12
+    
+class Employee(self):
+    def __init__(self):
+        self.__employeeName = ''
+        self.__payRate = 7.25
+        self.__regularHours = 0
+        self.__overtimeHours = 0
+
+    def get_Employee_Name(self):
+
+    def get_Hours_Worked(self):
+        #   This will need to be obtained 4 times
+        regular_Hours_Accumulator
+        overtime_Hours_Accumulator
+        
+               
+        #for i in range(4):
+
+    
+    def get_Pay_Rate(self):
+        
+
+
+----------------------------------------------
+Functions to get information from the user:
+
+    set_name
+    set_rate
+    set_hours   # This will be called 4 times per the .pdf document
+
+----------------------------------------------
+Functions to return:
+    
+    get_regular
+    get_overtime
+    get_name
+    get_rate    
