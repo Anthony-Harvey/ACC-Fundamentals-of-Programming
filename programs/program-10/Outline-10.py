@@ -1,9 +1,8 @@
 ## This file is just an outline of what I think Program 10 should look like upon initial review.
 
-## I will keep trying to update this file as I think about the program needs.
+## I will keep trying to update this file as I think about it.
 
 # End Goals:
-#    
 #    -Print the record of each household in the survey in a 3 column format
 #    -Print the Average Household Income
 #    -Print the Identification Number for Households that exceed the Average
@@ -17,11 +16,9 @@
 #        list_Identification
 #        list_Annual_income
 #        list_Household_members
-
 #    average_Income()
 #    poverty_Level()
 #    output_Data()
-
 #    
 #Rought Outline:
 
@@ -30,19 +27,19 @@
 #    # or maybe lists of ceach data type should be returned by import_Data()
 #        # This needs to be a loop that goes through the imported data and creates a list
 #        # It should also print the data in a 3 colum format: 'Identification #', 'Annual Income', 'Household Members'
-
+#
 #def import_Data():
 #    list_Identification = []
 #    list_Annual_income = []
 #    list_Household_members = []
-
+#
 #    text_File = open('Program10.txt', 'r')
 #    line_Read = text_File.readline()
 #    
 #    while line_Read != '':
 #        blah blah
 #        blah blah
-
+#
 #        avg_Income, above_Avg_ids = calculate_Avg_Income(placeholder_List)
 #        below_Poverty_ids, below_Poverty_percent = poverty_Level(placeholder_List)
 #            
@@ -50,7 +47,7 @@
 #        
 #    
 #    
-
+#
 #Notes:
 #    
 #    -Compute the Poverty Level/Line using the following formula:
@@ -61,8 +58,8 @@
 #    -No IPO in the main() function! Delegate tasks to individual functions.
 #    -All output should be sent to the file 'Program10-Output_File.txt'
 #    -NO GLOBAL VARIABLES
-
-
+#
+#
 #       
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -83,7 +80,7 @@ def main():
     percent_Below_poverty = poverty_Level(list_Household_members, list_Annual_income, list_Identification)
     
     
-    outport_Data(avg_Income, list_Identification_above, percent_Below_poverty)
+    outport_Data(avg_Income, list_Identification_above, percent_Below_poverty, list_Identification, list_Annual_income)
     #outport_Data(avg_Income, list_Identification_above, list_Identification, list_Annual_income, list_Household_members, percent_Below_poverty)    
     #avg_Income, above_Avg_ids = calculate_Avg_Income(placeholder_List)
     #below_Poverty_ids, below_Poverty_percent = poverty_Level(placeholder_List)
@@ -97,23 +94,24 @@ def import_Data():
     list_Annual_income = []
     list_Household_members = []
     
-    print("The following are the contents of Program10.txt")
-    print('')
-    print('\tID\tIncome\t\tMembers')
-    #   I have a method that fixes this dirty formatting below..
-    #   but I haven't toyed with it enough, to get it looking good
 
     text_File = open('Program10.txt', 'r')
+    output_File = open('AnthonyHarvey_Program10-Output.txt', 'w')
+
+    print("The following are the contents of Program10.txt")
+    print()
+    print('\tID\t Income\t\tMembers')
+    print('\t--\t ------\t\t-------')
+
     line_Read = text_File.readline()
-    
     while line_Read != '':
         
         identification, income, members = line_Read.split()
-        #print(int(identification), float(income), int(members))
         #   Because the text file has three pieces of datum per line, I attempt to store the three pieces in individual variables
         
         print("%10s%15.2f%10s" % (int(identification), float(income), int(members)))
         #   This is a formatting method obtained from the internet, its pretty neato
+        #   I don't have the best grasp on its usage, but I'm using it to practice
         #   I should research this more later
         
         list_Identification.append(int(identification))
@@ -123,8 +121,10 @@ def import_Data():
 
         line_Read = text_File.readline()
         #   Continue the while loop
+    print() 
+    print("\t\t(End of File)")
     print('-------------------------------------------------------------')
-    print('')
+    print()
     
     text_File.close()
 
@@ -152,11 +152,6 @@ def average_Income(list_Identification, list_Annual_income):
         list_Identification_above.append(list_Identification[value])
         
     #print(list_Identification_above)
-#    print("The Household:", list_Identification[value],\
-#    'makes the following Annual Income:', format(list_Annual_income[accumulator], ',.2f'),\
-#    "which is BELOW their calculated Poverty Level: ", format(povertyLevel, ',.2f'))
-
-
 
     avg_Income = format(avg_Income, '.2f')
         
@@ -181,41 +176,60 @@ def poverty_Level(list_Household_members, list_Annual_income, list_Identificatio
             #   My back hurts
             list_Households_poverty.append(value)
 
-            print("The Household ID:", list_Identification[value],\
-            'makes the following Annual Income:', format(list_Annual_income[accumulator], ',.2f'),\
-            "which is BELOW their calculated Poverty Level: ", format(povertyLevel, ',.2f'))
-            #   Line break key awesome! But my Ubuntu Terminal makes this formatting look terrible..
+            print("The Household ID: ", '(', list_Identification[value], ')', ' ',\
+            'makes the following Annual Income: ', '$', format(list_Annual_income[accumulator], ',.2f'),\
+            "\twhich is !BELOW! their calculated Poverty Level: ", ' ($',format(povertyLevel, ',.2f'), ')', sep = '')
+            #   Backslash key is awesome! But my Ubuntu Terminal makes this formatting look terrible..
             #   I should run this in Windows to make sure its not just my current environment
-            #   or if my formatting is just terrible.            
+            #   or if my formatting is just terrible.
+            #   Note to self: The formatting issues I saw were due to running the program in Python2.7 instead of python3            
             
-        elif list_Annual_income[accumulator] > povertyLevel:
-            list_Households_AbovePov.append(value)            
-            print("The Household ID:", list_Identification[value],\
-            'makes the following Annual Income:', format(list_Annual_income[accumulator], ',.2f'),\
-            "which is ABOVE their calculated Poverty Level: ", format(povertyLevel, ',.2f'))          
-
+#        elif list_Annual_income[accumulator] > povertyLevel:
+#            list_Households_AbovePov.append(value)            
+#            print("The Household ID: ", '(', list_Identification[value], ')', ' ',\
+#            'makes the following Annual Income: ', '$', format(list_Annual_income[accumulator], ',.2f'),\
+#            "\twhich is above their calculated Poverty Level: ", ' ($', format(povertyLevel, ',.2f'), ')', sep = '')          
+#    
 
         accumulator += 1
 
     #print('This is a list of the index values of Households that fall below the Poverty Line:', list_Households_poverty)
 
     percent_Below_poverty = format(float(len(list_Households_poverty)) / float(len(list_Annual_income)) * 100, '.2f')
-    #print(percent_Below_poverty)
-    #   Calculation for percentage of households falling below poverty line    
     
+    print()
+
     return(percent_Below_poverty)
 
 
-def outport_Data(avg_Income, list_Identification_above, percent_Below_poverty):
+def outport_Data(avg_Income, list_Identification_above, percent_Below_poverty, list_Identification, list_Annual_income):
+    
+    list_Test = []
+    print("The percentage of Households whose income is below the Poverty Level: ", percent_Below_poverty, '%', sep = '')
+    print('-------------------------------------------------------------')
 
-    print("")
-    print("The average income for all of the Households is:", avg_Income)
-    print("The Identification number for Households whose annual income is above the average: ")
-    print(list_Identification_above)
-    print("The percentage of Households whole income is below the Poverty Level: ", percent_Below_poverty, '%')
+    print()
+    print("The average income for all of the Households is:", ' $', format(float(avg_Income), ',.2f'), sep = '')
+    print()
+    
+    print("The following is a collection of all Households whose Annual Income is above the average Annual Income.")
+    print()
+    print('\t ID\t Income')
+    print('\t --\t ------')
+    for num in list_Identification_above:
+        somevar = list_Annual_income[list_Identification.index(num)]
+        print('\t',num , "\t", somevar)
+
+
+#    print(list_Identification)
+#    print(list_Identification_above)
+#    print(list_Annual_income)
+    
+        
+
 
     #AnthonyHarvey_Program10.txt = open(
-
+    
     
 #***************************************************************
 #
