@@ -1,0 +1,74 @@
+Name:     Anthony Harvey
+Course:   Programming Fundamentals I
+Program:  Ten
+
+The following are the contents of Program10.txt
+
+	ID	 Income		Members
+	--	 ------		-------
+      1042       12180.06         3
+      1062       13240.45         2
+      1327       19800.56         2
+      1483       22458.23         7
+      1900       17000.09         3
+      2112       18125.00         4
+      2345       15623.00         2
+      3210        3200.00         1
+      3600       39500.00         5
+      3601       11970.00         2
+      4724        8900.00         3
+      6217       45000.70         2
+      9280        6200.00         1
+      1000       31000.00         3
+      1200       36000.00         2
+      5601       51970.00         9
+      5724       66900.00         3
+      5217       10002.68         2
+      5280       70000.00         1
+      5000      100000.00         6
+      5200       25000.40         3
+      5230      120000.00         6
+      6641       85000.00         7
+      7000       45500.00         4
+      7100       56500.00         3
+      8110      110005.90         8
+      9101       67590.40         6
+	(End of File Contents)
+-------------------------------------------------------------
+
+The 2018 United States Contiguous States Poverty Level can be calculated with the following formula: (16460.00 + (4320.00 * (Members of Household - 2)))
+Using that formula, you can obtain the following list of Households that fall below that Poverty Line:
+
+The Household ID: (1483) makes the following Annual Income: $12,180.06	which is !BELOW! their calculated Poverty Level:  ($20,780.00)
+The Household ID: (1327) makes the following Annual Income: $13,240.45	which is !BELOW! their calculated Poverty Level:  ($16,460.00)
+The Household ID: (3210) makes the following Annual Income: $22,458.23	which is !BELOW! their calculated Poverty Level:  ($38,060.00)
+The Household ID: (1483) makes the following Annual Income: $17,000.09	which is !BELOW! their calculated Poverty Level:  ($20,780.00)
+The Household ID: (1900) makes the following Annual Income: $18,125.00	which is !BELOW! their calculated Poverty Level:  ($25,100.00)
+The Household ID: (1327) makes the following Annual Income: $15,623.00	which is !BELOW! their calculated Poverty Level:  ($16,460.00)
+The Household ID: (1062) makes the following Annual Income: $3,200.00	which is !BELOW! their calculated Poverty Level:  ($12,140.00)
+The Household ID: (1327) makes the following Annual Income: $11,970.00	which is !BELOW! their calculated Poverty Level:  ($16,460.00)
+The Household ID: (1483) makes the following Annual Income: $8,900.00	which is !BELOW! their calculated Poverty Level:  ($20,780.00)
+The Household ID: (1062) makes the following Annual Income: $6,200.00	which is !BELOW! their calculated Poverty Level:  ($12,140.00)
+The Household ID: (1327) makes the following Annual Income: $10,002.68	which is !BELOW! their calculated Poverty Level:  ($16,460.00)
+
+The percentage of Households whose income is below the Poverty Level is quite high, at: 40.74%
+
+-------------------------------------------------------------
+
+The average income for all of the Households is: $41,061.76
+
+The following is a collection of all Households whose Annual Income is above that average Annual Income.
+
+	 ID		Income
+	 --	 ------
+	 6217 	 45000.7
+	 5601 	 51970.0
+	 5724 	 66900.0
+	 5280 	 70000.0
+	 5000 	 100000.0
+	 5230 	 120000.0
+	 6641 	 85000.0
+	 7000 	 45500.0
+	 7100 	 56500.0
+	 8110 	 110005.9
+	 9101 	 67590.4
