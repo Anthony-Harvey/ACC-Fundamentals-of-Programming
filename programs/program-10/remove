@@ -1,0 +1,55 @@
+def main():
+
+    list_Identification, list_Annual_income, list_Household_members = import_Data()
+    #   print(list_Identification, list_Annual_income, list_Household_members)
+    #   Debug Print: Uncomment/indent to ensure proper returned values/lists
+
+    avg_Income = average_Income(list_Identification, list_Annual_income)
+    print("The average income is:", '$', avg_Income)
+    print()
+    #print(above_Avg_Households)
+    
+    
+    #outport_Data(avg_Income, avg_Income_exceed, avg_Below_)
+    #avg_Income, above_Avg_ids = calculate_Avg_Income(placeholder_List)
+    #below_Poverty_ids, below_Poverty_percent = poverty_Level(placeholder_List)
+
+def import_Data():
+    #   The purpose of this function will be to perform the following:
+    #   Read the contents of the Program10.txt file and split the data into lists of like content
+
+    list_Identification = []
+    list_Annual_income = []
+    list_Household_members = []
+
+    text_File = open('Program10.txt', 'r')
+    line_Read = text_File.readline()
+    
+    while line_Read != '':
+        
+        identification, income, members = line_Read.split()
+        #   Because the text file has three pieces of datum per line, I attempt to store the three pieces in individual variables
+
+        list_Identification.append(int(identification))
+        list_Annual_income.append(float(income))
+        list_Household_members.append(int(members))
+        #   I then append each variable to a matching list
+
+        line_Read = text_File.readline()
+        #   Continue the while loop
+
+    return(list_Identification, list_Annual_income, list_Household_members)
+
+def average_Income(list_Identification, list_Annual_income):
+    #   The purpose of this function will be to perform the following:
+    #   Calculate the Average Household Income
+    #   Print the Identification Numbers for Households that exceed the Average
+    
+    above_Avg_Households = []
+    avg_Income = (sum(list_Annual_income) / len(list_Annual_income))
+    
+    #for income in list_Annual_income:
+    #   print(income, 'income')
+
+    return(avg_Income)
+main()
