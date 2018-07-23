@@ -1,6 +1,6 @@
 #End Goals / Output:
-#    -Create a dictionary containing the key:value pairs: {team_Name:times_Won}
-#    -Create a dictionary containing the key:value pairs: {year:team_Name}
+#DONE-Create a dictionary containing the key:value pairs: {team_Name:times_Won}
+#DONE-Create a dictionary containing the key:value pairs: {year:team_Name}
 #    -Prompt the user for a specific Year between 1903 and 2017. 
 #        -Be sure to kickback any 1904 / 1994 user input.
 #        -Display the Name of the Team that Won
@@ -21,7 +21,7 @@
 #
 #  Course:            COSC 1336 Programming Fundamentals I 
 #
-#  Due Date:          2018-07-
+#  Due Date:          2018-07-27
 #
 #  Instructor:        Fred Kumi 
 #
@@ -46,14 +46,14 @@
 
 def main():
     userInfo()
-    dictionary_Creation()
-    #dictionary1, dictionary2 = dictionary_Creation()
-    #dictionary_Query(dictionary1, dictionary2)        
+    team_Victories, win_Timeline, year_List = dictionary_Creation()
+    dictionary_Query(team_Victories, win_Timeline, year_List)        
 
 
 def dictionary_Creation():
     team_Victories = {} # team_Name:times_Won
     win_Timeline = {} # year:team_Winner
+    year_List = []
     year = 1903
     times_Won = 0
     count_Ever_Won = 0
@@ -66,6 +66,8 @@ def dictionary_Creation():
             year += 1
 
         win_Timeline[year] = team_Name.rstrip('\n')
+        year_List.append(year)
+
         year += 1
         
         
@@ -80,41 +82,57 @@ def dictionary_Creation():
             #team_Victories.append(team_Name.rstrip('\n'))
 
         team_Name = input_File.readline()
-    print("The win_Timeline looks like this:",win_Timeline)
-    print(len(win_Timeline.keys()))
-    print("====================================================")
-    print("Total Number of Teams that have ever won a World Series (Including 'Boston Americans'):", count_Ever_Won)
+#    print("The win_Timeline looks like this:")
+#    print("---------------------------------")
+#    print(year_List)
+#    print(win_Timeline)
+#    print(len(win_Timeline.keys()))
+#    print("====================================================")
+#    print("Total Number of Teams that have ever won a World Series (Including 'Boston Americans'):", count_Ever_Won)
+#    print("====================================================")
+#    print("Incoming team_Victories info!:")
+#    print(team_Victories.keys())
+#    print("====================================================")
+#    print(team_Victories)
+#    print("====================================================")
+#    print("Incoming win_Timeline info:")
+#    print(win_Timeline.keys())
+#    print("====================================================")
+#    print(win_Timeline)
 
-    print("Incoming Team Name Keys!:")
-    print(team_Victories.keys())
-    print(team_Name)
-    vic_list = team_Victories
+#    print()
+#    print("The sum of all values of team_Victories:", sum(team_Victories.values()))
+#    print("The total number of years the World Series has happened:", ((2018-(1903)) - 2))
+#    print()
 
+    return(team_Victories, win_Timeline, year_List)
+
+def dictionary_Query(team_Victories, win_Timeline, year_List):
+    # I wonder...could I just put most of the dictionary_Query function into the try/except lol..    
+    while True:
+        try:
+            user_Year = int(input("Enter a year and the World Series winner will be returned: "))
+        except:
+            ValueError
+            print("(ERROR: Please enter a valid year)")           
+            continue
+        else:
+            break
+    while user_Year == 1904 or user_Year == 1994:
+        user_Year = int(input("There was no World Series this year! Please enter another year:"))
+
+    if user_Year < 1903:
+        print("I'm sorry, but there were no World Series games played before 1903.")
+        user_Year = int(input("Please enter a new year: "))
+    elif user_Year > year_List[-1]:
+#    elif user_Year > list(win_Timeline.keys())[-1]:
+        # This is maybe not the best way to do this.
+        print("I'm sorry, but either our datbase is stale, or we can't guess the future.")
+        int(input("Please enter a new year: "))
+
+    print("The team that had won the World Series in", user_Year, 'was the', win_Timeline[user_Year])
     print()
-    print("The sum of all values of team_Victories:", sum(team_Victories.values()))
-    print("The total number of years the World Series has happened:", ((2018-(1903)) - 2))
-
-
-#           blah
-#           dictionary2[] = accumulator
-#           accumulator += 1
-            
-#        return('junk1', 'junk2')
-#        return(team_Victories, win_Timeline)         
-#    
-#    def dictionary_Query(dictionary1, disctionary2):
-#        asd
-#        year = input("Which year would you like to know more about?")
-#            while year == 1903 or year == 1994:
-#                year = input("There was no World Series! Please enter another year!")
-#            
-#        
-#        
-#        
-
-#        print('blahblahblah:", )
-#        print('blahblahblah:", )
-#        print('blahblahblah:", )
+    
 
 #**************************************************************
 #
