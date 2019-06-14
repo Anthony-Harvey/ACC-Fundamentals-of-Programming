@@ -94,6 +94,9 @@ void inventoryFunction(int &stocked, int &ordered, double &specialChgs)
 		cout << "We need at least " << abs(stockNeeded);
 		cout << " more items to fill the current order list!" << endl;
 	}
+	
+	//	This menu is ugly as shit..terrible formatting, the tabs could probably be replaced with specified number of spaces, etc, etc
+	//	I'll need to use the \r character to update lines within the menu if changes are made to it
 	cout << "--------------------------------------------------------------------" << endl;
 	cout << "--\t\tCurrent Inventory Status\t\t          --" << endl;
 	cout << "--\tIn Stock\tNumber Ordered\t\tNumber Needed\t  --" << endl;
