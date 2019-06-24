@@ -37,36 +37,51 @@
 //		I'm undecided on whether or not it's better to have a function for the 'userChoice' or the class object setters/getters.
 //		Maybe it would be more interesting if there was a function for each set of actions, to make the 'main' function more streamlined.
 
+
+
+//	If I use an Inenvtory.h file, it will contain the class declaration(s)
+
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-//class Inventory
-//	int itemNumber = 0
-//	int quantity = 0
-//	double cost = 0.0
+class Inventory
+{
+	int itemNumber;
+	int quantity;
+	double cost;
 	
-//	Private Functions
-//		asd
-//		
-//	Public Functions
-//		default constructor
-//		constructor2
-//		
-//		setItemNumber
-//		setQuantity
-//		serCost
-//		getItemNumber
-//		getQuantity
-//		getCost
-//		getTotalCost
+	private:
+		//~ asd
+		
+	public:
+		Inventory()
+		{
+			itemNumber = 0;
+			quantity = 0;
+			cost = 10;
+		}
+		
+		//~ constructor2(){;}
+		
+		//~ setItemNumber(){itemNumber = 0;}
+		//~ setQuantity(){;}
+		//~ serCost(){;}
+		//~ getItemNumber(){;}
+		int getQuantity()
+		{
+			return quantity;
+		}
+		double getCost(){ return cost;}
+		//~ getTotalCost(){;}
+};
 
 void function2(int& userChoice);
 int main()
 {
 	int userChoice = 0;
-	
+		
 	cout << "Walmart Inventory Management Software: " << endl;
 	cout << "\tRemember... the customer is always something something!\n" << endl;
 	
@@ -82,7 +97,7 @@ int main()
 	
 	cout << "\t7. Add a new Item to the Inventory: " << endl;
 	cout << "\t8. Remove an Item from the Inventory" << endl;
-	cout << "\t9. Quit" << endl;
+	cout << "\t9. Quit" << endl; 	
 	
 	
 	//	Accept user menu choice and then pass the userChoice to an function that will manipulate the class Inventory object
@@ -90,9 +105,11 @@ int main()
 	{
 		while (!(cin >> userChoice) || userChoice < 0 || userChoice > 9)
 			{
-			cout << "Please ensure your entry is a positve integer between 1 and 7." << endl;
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << "Please ensure your entry is a positve integer between 1 and 9." << endl;
 			}
-			function2(userChoice);
+		function2(userChoice);
 	}
 
 
@@ -103,6 +120,16 @@ int main()
 void function2 (int& userChoice)
 {
 	cout << "function called" << userChoice << endl; 
+	
+	//~ Example of instantiating with an default constructor
+	Inventory stockItem2;
+	
+	//~ Example of instantiating with an overload constructor
+	//~ Inventory stockItem2(120, 20, 20.20f)
+	
+	//~ Example of using the getQuantity getter function
+	cout << "Quantity	: " << stockItem2.getCost() << endl;
+	
 	//~ if (userChoice == 1)
 	//~ {
 		//~ asdf
