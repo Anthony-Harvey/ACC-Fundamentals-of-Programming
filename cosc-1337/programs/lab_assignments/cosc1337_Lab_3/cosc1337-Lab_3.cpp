@@ -1,7 +1,7 @@
 //	Anthony Harvey
 //	cosc-1337:	Sravan Kumpati
 //	Lab 3:		Inventory Class
-//	DUE:		July 1st
+//	DUE:		
 
 	//	Chapter 7, pg.501
 	//	
@@ -58,16 +58,19 @@ class Inventory
 	public:
 		Inventory()
 		{
-			itemNumber = 0;
-			quantity = 0;
-			cost = 10;
 		}
 		
-		//~ constructor2(){;}
+		Inventory(int x, int y, float z)
+		{
+			itemNumber = 1;
+			quantity = 1;
+			cost = 0;
+		}
 		
+
 		//~ setItemNumber(){itemNumber = 0;}
 		//~ setQuantity(){;}
-		//~ serCost(){;}
+		//~ setCost(){;}
 		//~ getItemNumber(){;}
 		int getQuantity()
 		{
@@ -122,7 +125,7 @@ void function2 (int& userChoice)
 	cout << "function called" << userChoice << endl; 
 	
 	//~ Example of instantiating with an default constructor
-	Inventory stockItem2;
+	Inventory stockItem2(10, 1, 5);
 	
 	//~ Example of instantiating with an overload constructor
 	//~ Inventory stockItem2(120, 20, 20.20f)
