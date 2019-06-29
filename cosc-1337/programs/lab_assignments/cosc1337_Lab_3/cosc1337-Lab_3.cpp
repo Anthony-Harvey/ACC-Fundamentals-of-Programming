@@ -27,19 +27,10 @@
 	//		getTotalCost			Computes and returns the 'totalCost'
 	//
 	//
-	//	Demonstrate the class by writing a simple program that use it.
+	//	Demonstrate the class by writing a simple program that uses it.
 	//	This program should validate the user inputs to ensure that negative values are not accepted for item number, quantity, or cost.
 	//
 	//
-	
-	
-//	Psuedo Code Below
-//		I'm undecided on whether or not it's better to have a function for the 'userChoice' or the class object setters/getters.
-//		Maybe it would be more interesting if there was a function for each set of actions, to make the 'main' function more streamlined.
-
-
-
-//	If I use an Inenvtory.h file, it will contain the class declaration(s)
 
 #include <iostream>
 #include <string>
@@ -51,105 +42,324 @@ class Inventory
 	int itemNumber;
 	int quantity;
 	double cost;
+	double totalCost;
 	
 	private:
 		//~ asd
 		
 	public:
+	
+		//	Default constructor
 		Inventory()
 		{
+			itemNumber = 0;
+			quantity = 0;
+			cost = 0;
+			totalCost = 0;
 		}
 		
+		//	Constructor
 		Inventory(int x, int y, float z)
 		{
-			itemNumber = 1;
-			quantity = 1;
-			cost = 0;
+			itemNumber = x;
+			quantity = y;
+			cost = z;
+			totalCost = 0;
 		}
 		
-
-		//~ setItemNumber(){itemNumber = 0;}
-		//~ setQuantity(){;}
+		void itemNumSet(int x)
+		{
+			itemNumber = x;
+		}
+		
+		void setQuantity(int y)
+		{
+			quantity = y;
+		}
+		
+		void setCost(int z)
+		{
+			quantity = z;
+		}
+		
 		//~ setCost(){;}
-		//~ getItemNumber(){;}
+		
+		int getItemNumber()
+		{
+			return itemNumber;
+		}
+		
 		int getQuantity()
 		{
 			return quantity;
 		}
-		double getCost(){ return cost;}
-		//~ getTotalCost(){;}
+		
+		double getCost()
+		{
+			return cost;
+		}
+		
+		double getTotalCost()
+		{
+			totalCost = (cost * quantity);
+			return totalCost;
+		}
 };
 
-void function2(int& userChoice);
+//	Function Prototype
+void function2(int& menuChoice);
+
 int main()
 {
-	int userChoice = 0;
+	int menuChoice = 0;
+	int subMenuChoice = 0;
+	int itemNumber = 0;
+	int itemQuantity = 0;
+	double itemCost = 0;
 		
 	cout << "Walmart Inventory Management Software: " << endl;
 	cout << "\tRemember... the customer is always something something!\n" << endl;
 	
-	cout << "Available Inventory Management Choices" << endl;
-	cout << "\t1. Set the Item Number for the new Item" << endl;
-	cout << "\t2. Set the Quantity of the Item in the Inventory" << endl;
-	cout << "\t3. Set the Item Number for the new Item" << endl;
+
 	
-	cout << "\t4. Get the Item Number for an item in the Inventory" << endl;
-	cout << "\t5. Get the Quantity of an item in the Inventory" << endl;
-	cout << "\t5. Get the Cost of an item in the Inventory" << endl;
-	cout << "\t6. Get the Total Cost of a specific Item in the Inventory" << endl;
-	
-	cout << "\t7. Add a new Item to the Inventory: " << endl;
-	cout << "\t8. Remove an Item from the Inventory" << endl;
-	cout << "\t9. Quit" << endl; 	
-	
-	
-	//	Accept user menu choice and then pass the userChoice to an function that will manipulate the class Inventory object
-	while (userChoice != 9)
+	while (menuChoice != 4)
 	{
-		while (!(cin >> userChoice) || userChoice < 0 || userChoice > 9)
+		cout << "Available Inventory Management Choices" << endl;
+		cout << "\t1. Create a new Item" << endl;
+		cout << "\t2. Inspect the new Item" << endl;
+		cout << "\t3. Inventory Analytics" << endl;
+		cout << "\t4. Quit" << endl;
+		cout << "Please select an one of the 4 choices: \n";
+
+		while (!(cin >> menuChoice) || menuChoice < 0 || menuChoice > 4)
 			{
 			cin.clear();
 			cin.ignore(1000, '\n');
 			cout << "Please ensure your entry is a positve integer between 1 and 9." << endl;
 			}
-		function2(userChoice);
+			
+		if (menuChoice == 1)
+			{
+				//	User wants to Create New Item
+				Inventory newItemPlaceholder;
+				cout << "\tWe will now create a new item, but we need some information." << endl;
+				cout << "Please enter the Item Number: " << endl;
+			
+				while (!(cin >> itemNumber) || menuChoice < 0)
+				{
+				cin.clear();
+				cin.ignore(1000, '\n');
+				cout << "Please ensure your entry is a positve integer." << endl;
+				}
+				newItemPlaceholder.itemNumSet(itemNumber);
+				
+				
+				cout << "Please enter the Item Quantity: " << endl;
+				while (!(cin >> itemNumber) || menuChoice < 0)
+				{
+				cin.clear();
+				cin.ignore(1000, '\n');
+				cout << "Please ensure your entry is a positve integer." << endl;
+				}
+				newItemPlaceholder.setQuantity(itemQuantity);
+				
+				cout << "Please enter the Item Cost: " << endl;
+				while (!(cin >> itemNumber) || menuChoice < 0)
+				{
+				cin.clear();
+				cin.ignore(1000, '\n');
+				cout << "Please ensure your entry is a positve integer." << endl;
+				}
+				newItemPlaceholder.setCost(itemCost);
+				
+			}
+		
+		if (menuChoice == 2)
+		{
+			//	User wants to Inspect the New Item
+			while (subMenuChoice != 5)
+			{
+				cout << "You are now reviewing the new inventory item: \n";
+				cout << "\t1. Get the Item Quantity" << endl;
+				cout << "\t2. Get the Item Cost" << endl;
+				cout << "\t3. Change the Item Quantity" << endl;
+				cout << "\t4. Change the Item Cost" << endl;
+				cout << "\t5. Quit" << endl;
+				
+				while (!(cin >> subMenuChoice) || subMenuChoice < 0 || subMenuChoice > 5)
+					{
+						cin.clear();
+						cin.ignore(1000, '\n');
+						cout << "Please ensure your entry is a positve integer between 1 and 5." << endl;
+					}
+					
+				if (menuChoice == 1)
+				{
+					//	Get the Item Quantity
+					while (!(cin >> itemQuantity) || itemQuantity > 0)
+					{
+					cin.clear();
+					cin.ignore(1000, '\n');
+					cout << "Please ensure your entry is a positve integer." << endl;
+					}
+					newItemPlaceholder.getQuantity();
+				}
+			
+				if (menuChoice == 2)
+				{
+					//	Get the Item Cost
+					while (!(cin >> itemCost) || itemCost > 0)
+					{
+					cin.clear();
+					cin.ignore(1000, '\n');
+					cout << "Please ensure your entry is a positve integer." << endl;
+					}
+					newItemPlaceholder.getCost();
+				}
+				
+				if (menuChoice == 3)
+				{
+					//	Change the Item Quantity
+					while (!(cin >> itemQuantity) || itemQuantity > 0)
+					{
+					cin.clear();
+					cin.ignore(1000, '\n');
+					cout << "Please ensure your entry is a positve integer." << endl;
+					}
+					newItemPlaceholder.setQuantity(itemQuantity);
+				}
+			
+				if (menuChoice == 4)
+				{
+					//	Change the Item Cost
+					while (!(cin >> itemCost) || itemCost > 0)
+					{
+					cin.clear();
+					cin.ignore(1000, '\n');
+					cout << "Please ensure your entry is a positve integer." << endl;
+					}
+					newItemPlaceholder.setCost(itemCost);
+				}
+				
+				//~ if (menuChoice == 5)
+				//~ {
+					//~ //	Quit back to primary menu
+					
+				//~ }
+				
+				
+			}
+		}
+		
+		if (menuChoice == 3)
+		{
+			//	User wants to perform Inventory Analytics
+			
+		}
+			
+		if (menuChoice == 4)
+		{
+			
+		}
 	}
-
-
-	cout << "Done!" << endl;
-	return 0;
-}
-
-void function2 (int& userChoice)
-{
-	cout << "function called" << userChoice << endl; 
 	
-	//~ Example of instantiating with an default constructor
-	Inventory stockItem2(10, 1, 5);
+	//~ cout << "\t1. Set the Item Number for the new Item" << endl;
+	//~ cout << "\t2. Set the Quantity of the Item in the Inventory" << endl;
+	//~ cout << "\t3. Set the Item Number for the new Item" << endl;
 	
-	//~ Example of instantiating with an overload constructor
-	//~ Inventory stockItem2(120, 20, 20.20f)
+	//~ cout << "\t4. Get the Item Number for an item in the Inventory" << endl;
+	//~ cout << "\t1. Set the Item Number for the new Item" << endl;
+	//~ cout << "\t2. Set the Quantity of the Item in the Inventory" << endl;
+	//~ cout << "\t3. Set the Item Number for the new Item" << endl;
+	
+	//~ cout << "\t4. Get the Item Number for an item in the Inventory" << endl;
+	//~ cout << "\t5. Get the Quantity of an item in the Inventory" << endl;
+	//~ cout << "\t5. Get the Cost of an item in the Inventory" << endl;
+	//~ cout << "\t6. Get the Total Cost of a specific Item in the Inventory" << endl;
+	
+	//~	Option 7 will use an Overload Constructor to create the new item
+	//~ cout << "\t7. Add a new Item to the Inventory: " << endl;
+	//~ cout << "\t8. Remove an Item from the Inventory" << endl;
+	//~ cout << "\t9. Quit" << endl; 	
+	
+	
+	//	Accept user menu choice and then pass the menuChoice to an function that will manipulate the class Inventory object
+	//~ while (menuChoice != 9)
+	//~ {
+		//~ while (!(cin >> menuChoice) || menuChoice < 0 || menuChoice > 4)
+			//~ {
+			//~ cin.clear();
+			//~ cin.ignore(1000, '\n');
+			//~ cout << "Please ensure your entry is a positve integer between 1 and 9." << endl;
+			//~ }
+		//~ function2(menuChoice);
+	//~ }
+
+
+	//~ cout << "Done!" << endl;
+	//~ return 0;
+//~ }
+
+//~ void function2 (int& menuChoice)
+//~ {
+	//~ Inventory stockItem0;
+	//~ cout << "function called: " << menuChoice << endl; 
+	
+	//~ if (menuChoice == 7)
+	//~ {
+		//~ int newItemNum;
+		//~ int newItemQuantity;
+		//~ float newItemCost;
+		
+		//~ cout << "\tCreating New Item" << endl;
+		//~ cout << "Please provide an Item Number, Number of Items, and the Cost per Item: " << endl;
+		//~ cin >> newItemNum >> newItemQuantity >> newItemCost;
+		
+		//~ Inventory stockItem3(newItemNum, newItemQuantity, newItemCost);
+		//~ cout << stockItem3.getItemNumber() << endl;
+		//~ cout << stockItem3.getQuantity() << endl;
+		//~ cout << stockItem3.getCost() << endl;
+	//~ };
+		
+		//~ Example of instantiating with an default constructor
+	//~ else if ( menuChoice == 1)
+	//~ {
+		//~ Inventory stockItem2;
+		//~ cout << "getQuantity: " << stockItem0.getItemNumber() << endl;
+	//~ };
+	
+	//~ Example of using a setter method
+	//~ stockItem0.itemNumSet(2);
+	//~ cout << stockItem0.getQuantity();
 	
 	//~ Example of using the getQuantity getter function
-	cout << "Quantity	: " << stockItem2.getCost() << endl;
+	//~ cout << "Quantity	: " << stockItem2.getCost() << endl;
 	
-	//~ if (userChoice == 1)
+	//~ if (menuChoice == 7)
+	//~ {
+		//~ Inventory stockItem3(10, 20, 30);
+		//~ cout << stockItem3.getItemNumber() << endl;
+		//~ cout << stockItem3.getQuantity() << endl;
+		//~ cout << stockItem3.getCost() << endl;
+	//~ };
+	
+	//~ if (menuChoice == 1)
 	//~ {
 		//~ asdf
 	//~ }
-	//~ else if (userChoice == 2) 
+	//~ else if (menuChoice == 2) 
 	//~ {
 		//~ asdf
 	//~ }
-	//~ else if (userChoice == 3)
+	//~ else if (menuChoice == 3)
 	//~ {
 		//~ asdf
 	//~ }
-	//~ else if (userChoice == 4)
+	//~ else if (menuChoice == 4)
 	//~ {
 		//~ asdf
 	//~ }
-	//~ else (userChoice == 5)
+	//~ else (menuChoice == 5)
 	//~ {
 		//~ asdf
 	//~ }
