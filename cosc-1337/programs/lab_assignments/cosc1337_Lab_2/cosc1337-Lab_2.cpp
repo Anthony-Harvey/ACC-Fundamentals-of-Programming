@@ -61,7 +61,7 @@ int main()
 	cout << "How many Copper Wire Spools do we currently have in stock?\n\t";
 	while (!(cin >> stocked) || stocked < 0)
 	{
-		cout << "\tPlease ensure that you are entering only positive integers or zeroes!\n" << endl;
+		cout << "\tPlease ensure that you are entering only positive integers or zero!\n" << endl;
 		cin.clear();
 		cin.ignore(1000, '\n');
 		cout << "How many Copper Wire Spools do we currently have in stock?\n\t";
@@ -69,7 +69,7 @@ int main()
 	cout << "How many Copper Wire Spools have been ordered?\n\t";
 	while (!(cin >> ordered) || ordered < 0)
 	{	
-		cout << "\tPlease ensure that you are entering only positive integers or zeroes only!\n" << endl;
+		cout << "\tPlease ensure that you are entering only positive integers or zero!\n" << endl;
 		cin.clear();
 		cin.ignore(1000, '\n');
 		cout << "How many Copper Wire Spools have been ordered?\n\t";
@@ -78,7 +78,7 @@ int main()
 	cout << "(Enter 0 if none)\n\t";
 	while(!(cin >> specialChgs) || specialChgs < 0)
 	{
-		cout << "\tPlease ensure that you are entering only positive integeres of zeroes only!\n" << endl;
+		cout << "\tPlease ensure that you are entering only positive integeres of zero!\n" << endl;
 		cin.clear();
 		cin.ignore(1000, '\n');
 		cout << "Please input any additional Special Shipping and Handling charges: \n\t";
@@ -97,9 +97,7 @@ int main()
 
 void inventoryFunction(int& stocked, int& ordered, double& specialChgs)
 {
-	
 	int stockNeeded = 0;
-	
 	
 	if (ordered > stocked)
 	{
@@ -111,7 +109,6 @@ void inventoryFunction(int& stocked, int& ordered, double& specialChgs)
 	
 	//	This display has terrible formatting, the tabs could probably be replaced with specified number of spaces, etc, etc
 	//		Maybe I should try using something like 'cout << string( n, ' ') << endl;' instead of 'cout << "--\t\t\t\t" << endl;'
-
 	cout << "--------------------------------------------------" << endl;
 	
 	cout << "--\t    Current Inventory Status:\t\t--" << endl;
@@ -137,19 +134,9 @@ void inventoryFunction(int& stocked, int& ordered, double& specialChgs)
 	cout << "--\t" << "$" <<  costShipping*(ordered - stockNeeded) + specialChgs; cout << "\t\t\t" << "$" <<  costShipping*(stockNeeded); cout << "\t\t--" << endl;
 	cout << "--\t\t\t\t\t\t--" << endl;
 	
-	cout << "--\tCurrent Charge\t\tPending\t\t--" << endl;
+	cout << "--\tCurrent Charge\t\tPending Charge\t--" << endl;
 	cout << "--\t" << "$" << (costBaseItem*(ordered - stockNeeded)) + (costShipping*(ordered - stockNeeded) + specialChgs);
 	cout << "\t\t\t$"; cout << costBaseItem*(stockNeeded) + costShipping*(stockNeeded) + specialChgs; cout << "\t\t--" << endl;
 	
 	cout << "--------------------------------------------------" << endl;
-	
-	//cout << stocked << ordered << specialChgs <<  endl;
-	//cout << outboundStock << stockNeeded << handlingCost << gross << handling << endl;
-	
-	
-	
-	
-	
-	
-	
 }
