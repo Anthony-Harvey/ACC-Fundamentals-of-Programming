@@ -33,14 +33,15 @@
 	//
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 
 using namespace std;
 
 class Inventory
 {
-	int itemNumber;
-	int quantity;
+	int itemNumber,
+		quantity;
 	double cost;
 	double totalCost;
 	
@@ -67,7 +68,7 @@ class Inventory
 			totalCost = 0;
 		}
 		
-		void itemNumSet(int x)
+		void setItemNum(int x)
 		{
 			itemNumber = x;
 		}
@@ -104,6 +105,13 @@ class Inventory
 			totalCost = (cost * quantity);
 			return totalCost;
 		}
+		void getSummary()
+		{
+			cout << setw(15) << "Item Number: " << setw(12) << getItemNumber() << endl;
+			cout << setw(15) << "Quantity: " << setw(12)  << getQuantity() << endl;
+			cout << setw(15) << "Cost: " << setw(12) << getCost() << endl;
+			cout << setw(15) << "Total Cost: " << setw(12) << getTotalCost() << endl;
+		}
 };
 
 //	Function Prototype
@@ -111,11 +119,14 @@ void function2(int& menuChoice);
 
 int main()
 {
-	int menuChoice = 0;
-	int subMenuChoice = 0;
-	int itemNumber = 0;
-	int itemQuantity = 0;
+	int menuChoice = 0,
+		subMenuChoice = 0,
+		itemNumber = 0,
+		itemQuantity = 0;
 	double itemCost = 0;
+	
+	const int SIZE = 10;
+	Inventory itemList[SIZE];
 		
 	cout << "Walmart Inventory Management Software: " << endl;
 	cout << "\tRemember... the customer is always something something!\n" << endl;
@@ -125,10 +136,10 @@ int main()
 	while (menuChoice != 3)
 	{
 		cout << "\nAvailable Inventory Management Choices" << endl;
-		cout << "\t1. Create a new Item" << endl;
+		cout << "\t1. Inventory Management" << endl;
 		cout << "\t2. Inventory Analytics" << endl;
 		cout << "\t3. Quit" << endl;
-		cout << "Please select an one of the 3 choices: \n";
+		cout << "\tPlease select an option: \n";
 
 		while (!(cin >> menuChoice) || menuChoice < 0 || menuChoice > 3)
 			{
@@ -139,9 +150,9 @@ int main()
 			
 		if (menuChoice == 1)
 		{
-			cout << "\t1. Create an Item with already known Cost and Quantity" << endl;
-			cout << "\t2. Create a blank item" << endl;
-			cout << "\t3. Remove an Item from the Inventory" << endl;
+			cout << "\t1. Create an Item with an already known Cost and Quantity" << endl;
+			cout << "\t2. Create a default Item" << endl;
+			cout << "\t3. Remove an Item from the Inventory (Feature not yet available)" << endl;
 			cout << "\t4. Return to previous Menu" << endl;
 			
 			while (!(cin >> subMenuChoice) || subMenuChoice < 0 || subMenuChoice > 4)
@@ -154,44 +165,55 @@ int main()
 			
 			if (subMenuChoice == 1)
 			{
-				Inventory newItemPlaceholder;
-				cout << "\tWe will now create a new item, but we need some information." << endl;
+				cout << "We will now create a new item, but we need some information." << endl;
+				
 				cout << "Please enter the Item Number: " << endl;
-			
 				while (!(cin >> itemNumber) || menuChoice < 0)
 				{
 				cin.clear();
 				cin.ignore(1000, '\n');
 				cout << "Please ensure your entry is a positve integer." << endl;
 				}
-				newItemPlaceholder.itemNumSet(itemNumber);
-				
 				
 				cout << "Please enter the Item Quantity: " << endl;
-				while (!(cin >> itemNumber) || menuChoice < 0)
+				while (!(cin >> itemQuantity) || menuChoice < 0)
 				{
 				cin.clear();
 				cin.ignore(1000, '\n');
 				cout << "Please ensure your entry is a positve integer." << endl;
 				}
-				newItemPlaceholder.setQuantity(itemQuantity);
 				
 				cout << "Please enter the Item Cost: " << endl;
-				while (!(cin >> itemNumber) || menuChoice < 0)
+				while (!(cin >> itemCost) || menuChoice < 0)
 				{
 				cin.clear();
 				cin.ignore(1000, '\n');
 				cout << "Please ensure your entry is a positve integer." << endl;
 				}
-				newItemPlaceholder.setCost(itemCost);
-				}
 				
-			};
+				Inventory newItemPlaceholder(itemNumber, itemQuantity, itemCost);
+				cout << "\n";
+				newItemPlaceholder.getSummary();
+				
+				itemList[0] = newItemPlaceholder;
+				
+			}
+			else if (subMenuChoice == 2)
+			{
+				cout << "\nCreating a new item with default values.." << endl;
+				
+				Inventory newItemPlaceholder;
+				newItemPlaceholder.getSummary();
+			}
 		
-			if (menuChoice == 3)
+		};
+		
+			if (menuChoice == 2)
 			{
 				//	User wants to perform Inventory Analytics
-				cout << menuChoice;
+				cout << "\n";
+				Inventory newItemPlaceholder;
+				newItemPlaceholder.getSummary();
 			};
 				
 			if (menuChoice == 4)
