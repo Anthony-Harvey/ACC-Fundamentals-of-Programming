@@ -196,10 +196,13 @@ int main()
 				cout << "\n";
 				newItemPlaceholder.getSummary();
 				
+				//	A for loop should probably be placed directly at the start of the Create a New Item section.
+				//		Should it allow a user to modify/add up to 5 items to the 5 item array of objects?
+				//	This for loop right here is for testing purposes only! Remove it when time is available.
 				for (int i=0; i < 5; i++)
 				{
 					itemList[i] = newItemPlaceholder;
-					itemList[0].getSummary();
+					itemList[i].getSummary();
 				}
 				
 			}
