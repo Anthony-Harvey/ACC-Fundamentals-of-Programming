@@ -42,6 +42,7 @@ class Inventory
 {
 	int itemNumber,
 		quantity;
+		
 	double cost;
 	double totalCost;
 	
@@ -195,7 +196,11 @@ int main()
 				cout << "\n";
 				newItemPlaceholder.getSummary();
 				
-				itemList[0] = newItemPlaceholder;
+				for (i=0, i < 5, i++)
+				{
+					itemList[i] = newItemPlaceholder;
+					cout << itemList[0].getSummary();
+				}
 				
 			}
 			else if (subMenuChoice == 2)
