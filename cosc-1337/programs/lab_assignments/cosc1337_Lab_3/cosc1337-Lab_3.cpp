@@ -196,10 +196,10 @@ int main()
 				cout << "\n";
 				newItemPlaceholder.getSummary();
 				
-				for (i=0, i < 5, i++)
+				for (int i=0; i < 5; i++)
 				{
 					itemList[i] = newItemPlaceholder;
-					cout << itemList[0].getSummary();
+					itemList[0].getSummary();
 				}
 				
 			}
