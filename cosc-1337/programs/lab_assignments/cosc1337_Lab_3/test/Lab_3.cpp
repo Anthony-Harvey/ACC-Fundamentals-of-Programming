@@ -117,21 +117,17 @@ class Inventory
 
 //	Function Prototype
 void function2(int& menuChoice);
+void itemListManip();
 
 int main()
 {
 	int menuChoice = 0,
-		subMenuChoice = 0,
-		itemNumber = 0,
-		itemQuantity = 0;
-	double itemCost = 0;
+		subMenuChoice = 0;
 	
-	const int SIZE = 10;
-	Inventory itemList[SIZE];
+	//~ Inventory itemList[SIZE];
 		
 	cout << "Walmart Inventory Management Software: " << endl;
 	cout << "\tRemember... the customer is always something something!\n" << endl;
-	
 
 	
 	while (menuChoice != 3)
@@ -140,104 +136,126 @@ int main()
 		cout << "\t1. Inventory Management" << endl;
 		cout << "\t2. Inventory Analytics" << endl;
 		cout << "\t3. Quit" << endl;
-		cout << "\tPlease select an option: \n";
+		cout << "\tPlease select an option: \n";	
 
 		while (!(cin >> menuChoice) || menuChoice < 0 || menuChoice > 3)
-			{
-			cin.clear();
-			cin.ignore(1000, '\n');
-			cout << "Please ensure your entry is a positve integer between 1 and 3." << endl;
-			}
+		{
+		cin.clear();
+		cin.ignore(1000, '\n');
+		cout << "Please ensure your entry is a positve integer between 1 and 3." << endl;
+		}
 			
 		if (menuChoice == 1)
 		{
+			//	Inventory Management
 			cout << "\t1. Create an Item with an already known Cost and Quantity" << endl;
 			cout << "\t2. Create a default Item" << endl;
 			cout << "\t3. Remove an Item from the Inventory (Feature not yet available)" << endl;
 			cout << "\t4. Return to previous Menu" << endl;
 			
 			while (!(cin >> subMenuChoice) || subMenuChoice < 0 || subMenuChoice > 4)
-				{
-				cin.clear();
-				cin.ignore(1000, '\n');
-				cout << "Please ensure your entry is a positve integer between 1 and 4." << endl;
-				}
-			//	User wants to Create New Item
+			{
+			}
 			
 			if (subMenuChoice == 1)
 			{
-				
-				cout << "We will now create a new item, but we need some information." << endl;
-				
-				cout << "Please enter the Item Number: " << endl;
-				while (!(cin >> itemNumber) || menuChoice < 0)
-				{
-					cin.clear();
-					cin.ignore(1000, '\n');
-					cout << "Please ensure your entry is a positve integer." << endl;
-				}
-				
-				cout << "Please enter the Item Quantity: " << endl;
-				while (!(cin >> itemQuantity) || menuChoice < 0)
-				{
-					cin.clear();
-					cin.ignore(1000, '\n');
-					cout << "Please ensure your entry is a positve integer." << endl;
-				}
-				
-				cout << "Please enter the Item Cost: " << endl;
-				while (!(cin >> itemCost) || menuChoice < 0)
-				{
-					cin.clear();
-					cin.ignore(1000, '\n');
-					cout << "Please ensure your entry is a positve integer." << endl;
-				}
-					
-				Inventory newItemPlaceholder(itemNumber, itemQuantity, itemCost);
-				cout << "\n";
-				
-				itemList[0] = newItemPlaceholder;
-				itemList[0].getSummary();
-				
+				// Call function to create/edit an Inventory object
+				cout << "yep1";
+				itemListManip();
 			}
-				
-				//~ Inventory newItemPlaceholder(itemNumber, itemQuantity, itemCost);
-				//~ cout << "\n";
-				//~ newItemPlaceholder.getSummary();
-				
-				//	A for loop should probably be placed directly at the start of the Create a New Item section.
-				//		Should it allow a user to modify/add up to 5 items to the 5 item array of objects?
-				//	This for loop right here is for testing purposes only! Remove it when time is available.
-				//~ for (int i=0; i < 5; i++)
-				//~ {
-					//~ itemList[i] = newItemPlaceholder;
-					//~ itemList[i].getSummary();
-				//~ }
-				
-			}
+			
 			else if (subMenuChoice == 2)
 			{
-				cout << "\nCreating a new item with default values.." << endl;
-				
-				Inventory newItemPlaceholder;
-				newItemPlaceholder.getSummary();
+				//	Instantiate a Default Inventory Object
+				//	Call function to create an Inventory object?
+				cout << "yep2";
 			}
-		
+			
+			else if (subMenuChoice == 3)
+			{
+				//	Call the function to create an Inventory object
+				//	Pop an item out of the array?
+				cout << "yep3";
+			}
+			
+			else if (subMenuChoice == 4)
+			{
+				break;
+			}
 		};
-		
-			if (menuChoice == 2)
+		if (menuChoice == 2)
+		{
+			//	Inventory Analytics
+			cout << "\t1. Create an Item with an already known Cost and Quantity" << endl;
+			cout << "\t2. Create a default Item" << endl;
+			cout << "\t3. Remove an Item from the Inventory (Feature not yet available)" << endl;
+			cout << "\t4. Return to previous Menu" << endl;
+			
+			while (!(cin >> subMenuChoice) || subMenuChoice < 0 || subMenuChoice > 4)
 			{
-				//	User wants to perform Inventory Analytics
-				cout << "\n";
-				Inventory newItemPlaceholder;
-				newItemPlaceholder.getSummary();
-			};
-				
-			if (menuChoice == 4)
-			{
-				cout << menuChoice;
 			}
-	
+			
+			if (subMenuChoice == 1)
+			{
+				// Call function to create/edit an Inventory object
+				
+			}
+		
+	}
+		
+		if (menuChoice == 3)
+		{
+			//	Quit
+			
+		}
+		
+	}
+
 	cout << "\nDone!" << endl;
 	return 0;
+}
+
+void itemListManip()
+{
+	const int SIZE = 5;
+	int itemNumber = 0,
+		itemQuantity = 0;
+		
+	double itemCost = 0;
+	
+	Inventory itemList[SIZE];
+	
+	cout << "We will now create a new item, but we need some information." << endl;
+	
+	cout << "Please enter the Item Number: " << endl;
+	while (!(cin >> itemNumber))
+	{
+		cin.clear();
+		cin.ignore(1000, '\n');
+		cout << "Please ensure your entry is a positve integer." << endl;
+	}
+	
+	cout << "Please enter the Item Quantity: " << endl;
+	while (!(cin >> itemQuantity))
+	{
+		cin.clear();
+		cin.ignore(1000, '\n');
+		cout << "Please ensure your entry is a positve integer." << endl;
+	}
+	
+	cout << "Please enter the Item Cost: " << endl;
+	while (!(cin >> itemCost))
+	{
+		cin.clear();
+		cin.ignore(1000, '\n');
+		cout << "Please ensure your entry is a positve integer." << endl;
+	}
+		
+	Inventory newItemPlaceholder(itemNumber, itemQuantity, itemCost);
+	cout << "\n";
+	
+	itemList[0] = newItemPlaceholder;
+	itemList[0].getSummary();
+	
+	
 }
