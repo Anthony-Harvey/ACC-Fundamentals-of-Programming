@@ -46,10 +46,6 @@
 	//	and stores them in a 20 character Array.
 	//
 	//	BDAACABACDBCDADCCBDA
-	
-	
-//	Psuedo Code Below
-
 
 #include <iostream>
 #include <iomanip>
@@ -64,12 +60,13 @@ class DMVTestGrader
 {
 	string answerString;
 	string studentName;
-	string studentAnswerKey;
+	string studentAnswers;
 	int testScore;
 	
 	private:
 		void passFail(int inc)
 		{
+			
 			testScore = (((testSize - inc) * 100.0) / testSize);
 			cout << "\tTest Score: " << testScore << endl;
 			
@@ -79,9 +76,8 @@ class DMVTestGrader
 			}
 			else
 			{
-				cout << studentName << " failed!\n" << endl;
+				cout << "\t" << studentName << " failed!" << endl;
 			}
-			
 		}
 		
 	public:
@@ -89,25 +85,22 @@ class DMVTestGrader
 		{
 			answerString = x;
 			studentName = y;
-			studentAnswerKey = z;
+			studentAnswers = z;
 		}
-		void getAnswers()
-		{
-			//~ return answerKey;
-		}
-		
 		void setAnswerKey(string answerString)
 		{
 			cout << "Please input the answers for the Test\n";
 			cin >> answerString;
 		}
-		
 		void grade()
 		{
 			int incorrect = 0;
+			//	Known issues:
+			//		Input of studentAnswers can be shorter than answerString which results in improper grading.
+			
 			for(int i = 0; i < testSize; i++)
 			{
-				if (studentAnswerKey[i] == answerString[i])
+				if (studentAnswers[i] == answerString[i])
 				{
 					cout << "Answer " << i + 1 << " is Correct!\n";
 				}
@@ -119,23 +112,21 @@ class DMVTestGrader
 			}
 			cout << "\tIncorrect answers: " << incorrect << endl;
 			passFail(incorrect);
-			
 		}
-		
 };
 
-//~ void userAnswers (int []);
-char studentObjectGrader(string teacherAnswerKey, string studentName, string studentAnswerKey);
+char studentObjectGrader(string teacherAnswerKey, string studentName, string studentAnswers);
 
 int main()
 {
 	string studentName;
 	string teacherAnswerKey;
-	string studentAnswerKey;
+	string studentAnswers;
 	int whileLCV = 1;
 	
 	cout << "Please Enter the Answer Key for the test\n\t";
 	cin >> teacherAnswerKey;
+	
 	
 	while(whileLCV != 0)
 	{
@@ -143,28 +134,30 @@ int main()
 		cin >> studentName;
 		
 		cout << "Please Enter the Students Answers\n\t";
-		cin >> studentAnswerKey;
+		cin >> studentAnswers;
 		
-		studentObjectGrader(teacherAnswerKey, studentName, studentAnswerKey);
+		studentObjectGrader(teacherAnswerKey, studentName, studentAnswers);
 		
-		cout << "Are you done entering student test data?" << endl;
+		cout << "\nAre you done entering student test data?" << endl;
 		cout << "\tEnter 1 to continue" << endl;
+		cout << "\tEnter 2 to change the Answer Key" << endl;
 		cout << "\tEnter 0 to quit" << endl;
 		cin >> whileLCV;
+		
+		if(whileLCV == 2)
+		{
+			cout << "Please Enter the NEW Answer Key\n\t";
+			cin >> teacherAnswerKey;
+		}
 	}
 	return 0;
 }
 
-char studentObjectGrader(string teacherAnswerKey, string nameofStudent, string studentAnswerKey)
+char studentObjectGrader(string teacherAnswerKey, string nameofStudent, string studentAnswers)
 {
-	//~ string y;
-	//~ y = nameofStudent;
-	
-	DMVTestGrader testStudentGrade(teacherAnswerKey, nameofStudent, studentAnswerKey);
-	//~ testStudentGrade.setAnswerKey(teacherAnswerKey);
+	DMVTestGrader testStudentGrade(teacherAnswerKey, nameofStudent, studentAnswers);
+	//	if(whileLCV = 2){testStudentGrade.setAnswerKey(newteacherAnswerKey);
 	testStudentGrade.grade();
 
-	//	Maybe this should be int function?
 	return 0;
 }
-//~ void showSCores
