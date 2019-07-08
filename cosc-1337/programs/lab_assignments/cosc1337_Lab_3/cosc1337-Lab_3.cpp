@@ -84,8 +84,6 @@ class Inventory
 			quantity = z;
 		}
 		
-		//~ setCost(){;}
-		
 		int getItemNumber()
 		{
 			return itemNumber;
@@ -140,7 +138,7 @@ int main()
 	{
 		cout << "\nAvailable Inventory Management Choices" << endl;
 		cout << "\t1. Inventory Management" << endl;
-		cout << "\t2. Inventory Analytics" << endl;
+		cout << "\t2. Inventory Summary" << endl;
 		cout << "\t3. Quit" << endl;
 		cout << "\tPlease select an option: \n";
 
@@ -195,14 +193,12 @@ int main()
 						cin.ignore(1000, '\n');
 						cout << "Please ensure your entry is a positve integer." << endl;
 					}
-						
-					//	Inventory newItemPlaceholder(itemNumber, itemQuantity, itemCost);
-					//itemList[i]
+					
+					//	Calling the Overload Constructor to assign the users values to the Object in the array
 					itemList[i] = Inventory(itemNumber, itemQuantity, itemCost);
 					cout << "\n";
-					
-					//itemList[i] = newItemPlaceholder;
 					itemList[i].getSummary();
+					
 				}
 			}
 			else if (subMenuChoice == 2)
@@ -216,7 +212,8 @@ int main()
 		
 		if (menuChoice == 2)
 		{
-			//	User wants to perform Inventory Analytics
+			//	User wants to get an Inventory Summary
+			
 			cout << "\n";
 			
 			for(int j = 0; j < 5; j++)
