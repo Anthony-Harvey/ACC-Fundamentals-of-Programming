@@ -117,7 +117,7 @@ class Inventory
 
 //	Function Prototype
 void function2(int& menuChoice);
-void itemListManip();
+void itemListManip(int subMenuChoice);
 
 int main()
 {
@@ -129,7 +129,6 @@ int main()
 	cout << "Walmart Inventory Management Software: " << endl;
 	cout << "\tRemember... the customer is always something something!\n" << endl;
 
-	
 	while (menuChoice != 3)
 	{
 		cout << "\nAvailable Inventory Management Choices" << endl;
@@ -137,7 +136,7 @@ int main()
 		cout << "\t2. Inventory Analytics" << endl;
 		cout << "\t3. Quit" << endl;
 		cout << "\tPlease select an option: \n";	
-
+		
 		while (!(cin >> menuChoice) || menuChoice < 0 || menuChoice > 3)
 		{
 		cin.clear();
@@ -149,58 +148,36 @@ int main()
 		{
 			//	Inventory Management
 			cout << "\t1. Create an Item with an already known Cost and Quantity" << endl;
-			cout << "\t2. Create a default Item" << endl;
-			cout << "\t3. Remove an Item from the Inventory (Feature not yet available)" << endl;
-			cout << "\t4. Return to previous Menu" << endl;
+			cout << "\t2. Remove an Item from the Inventory (Feature not yet available)" << endl;
+			cout << "\t3. Return to previous Menu" << endl;
 			
-			while (!(cin >> subMenuChoice) || subMenuChoice < 0 || subMenuChoice > 4)
+			while (!(cin >> subMenuChoice) || subMenuChoice < 0 || subMenuChoice > 3)
 			{
 			}
 			
 			if (subMenuChoice == 1)
 			{
 				// Call function to create/edit an Inventory object
-				cout << "yep1";
-				itemListManip();
+				cout << "Choice 1\n";
+				itemListManip(subMenuChoice);
 			}
 			
 			else if (subMenuChoice == 2)
 			{
-				//	Instantiate a Default Inventory Object
-				//	Call function to create an Inventory object?
-				cout << "yep2";
+				//	Call the function to create an Inventory object
+				//	Pop an item out of the array?
+				cout << "Choice 2\n";
 			}
 			
 			else if (subMenuChoice == 3)
 			{
-				//	Call the function to create an Inventory object
-				//	Pop an item out of the array?
-				cout << "yep3";
-			}
-			
-			else if (subMenuChoice == 4)
-			{
 				break;
 			}
-		};
+		}
 		if (menuChoice == 2)
 		{
-			//	Inventory Analytics
-			cout << "\t1. Create an Item with an already known Cost and Quantity" << endl;
-			cout << "\t2. Create a default Item" << endl;
-			cout << "\t3. Remove an Item from the Inventory (Feature not yet available)" << endl;
-			cout << "\t4. Return to previous Menu" << endl;
 			
-			while (!(cin >> subMenuChoice) || subMenuChoice < 0 || subMenuChoice > 4)
-			{
-			}
-			
-			if (subMenuChoice == 1)
-			{
-				// Call function to create/edit an Inventory object
-				
-			}
-		
+		}
 	}
 		
 		if (menuChoice == 3)
@@ -215,7 +192,7 @@ int main()
 	return 0;
 }
 
-void itemListManip()
+void itemListManip(subMenuChoice)
 {
 	const int SIZE = 5;
 	int itemNumber = 0,
@@ -250,12 +227,11 @@ void itemListManip()
 		cin.ignore(1000, '\n');
 		cout << "Please ensure your entry is a positve integer." << endl;
 	}
-		
+	
 	Inventory newItemPlaceholder(itemNumber, itemQuantity, itemCost);
 	cout << "\n";
 	
 	itemList[0] = newItemPlaceholder;
 	itemList[0].getSummary();
-	
 	
 }
