@@ -81,13 +81,12 @@ class DMVTestGrader
 		}
 		
 	public:
-		DMVTestGrader(string x, string y, string z)
+		DMVTestGrader(string y, string z)
 		{
-			answerString = x;
 			studentName = y;
 			studentAnswers = z;
 		}
-		void setAnswerKey(string answerString)
+		void setKey()
 		{
 			cout << "Please input the answers for the Test\n";
 			cin >> answerString;
@@ -96,7 +95,7 @@ class DMVTestGrader
 		{
 			int incorrect = 0;
 			//	Known issues:
-			//		Input of studentAnswers can be shorter than answerString which results in improper grading.
+			//		Input of studentAnswers can be shorter/longer than answerString which results in improper grading.
 			
 			for(int i = 0; i < testSize; i++)
 			{
@@ -124,10 +123,6 @@ int main()
 	string studentAnswers;
 	int whileLCV = 1;
 	
-	cout << "Please Enter the Answer Key for the test\n\t";
-	cin >> teacherAnswerKey;
-	
-	
 	while(whileLCV != 0)
 	{
 		cout << "Please Enter the name of the Student\n\t";
@@ -140,23 +135,22 @@ int main()
 		
 		cout << "\nAre you done entering student test data?" << endl;
 		cout << "\tEnter 1 to continue" << endl;
-		cout << "\tEnter 2 to change the Answer Key" << endl;
+		//~ cout << "\tEnter 2 to change the Answer Key" << endl;
 		cout << "\tEnter 0 to quit" << endl;
 		cin >> whileLCV;
 		
-		if(whileLCV == 2)
-		{
-			cout << "Please Enter the NEW Answer Key\n\t";
-			cin >> teacherAnswerKey;
-		}
+		//~ if(whileLCV == 2)
+		//~ {
+			//~ //	After this runs the user can enter a new Answer Key, and subsequent objects instantiate with the new Answer Key
+		//~ }
 	}
 	return 0;
 }
 
 char studentObjectGrader(string teacherAnswerKey, string nameofStudent, string studentAnswers)
 {
-	DMVTestGrader testStudentGrade(teacherAnswerKey, nameofStudent, studentAnswers);
-	//	if(whileLCV = 2){testStudentGrade.setAnswerKey(newteacherAnswerKey);
+	DMVTestGrader testStudentGrade(nameofStudent, studentAnswers);
+	testStudentGrade.setKey();
 	testStudentGrade.grade();
 
 	return 0;
