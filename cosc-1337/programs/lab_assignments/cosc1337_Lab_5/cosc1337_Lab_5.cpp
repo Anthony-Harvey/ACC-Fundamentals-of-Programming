@@ -1,8 +1,3 @@
-//	Anthony Harvey
-//	cosc-1337:	Sravan Kumpati
-//	Lab 4:		Driver's License Exam
-//	DUE:		
-
 	//	Chapter 9, pg.642
 	//	
 	//	Write a program that can be used by a ski resort to keep track of local snow conditions for one week.
@@ -40,71 +35,79 @@ const int WEEK = 7;
 
 class SnowTracker
 {	
-	int date;
-	double snowDepth;
+	int startDate = 0;
+	int snowDate = 0;
+	double snowDepth = 0;
+	
 	//	totalSnowDepth should sum each objects snowDepth
-	static double s_TotalSnowDepth;
+	//~ static double s_TotalSnowDepth;
 	
 	private:
 	
 	public:
-		SnowTracker(int startDate, int y)
+		SnowTracker()
 		{
-			date = startDate;
+		}
+		SnowTracker(int x, int y)
+		{
+			snowDate = x;
 			snowDepth = y;
 		}
 		
-		static double s_GetTotalSnowDepth()
-		{
+		//~ static double s_GetTotalSnowDepth()
+		//~ {
 			
-		}
-		void setDate(int x, double y)
+		//~ }
+		void setSnowDate(int x)
 		{
-			date = x;
+			snowDate = x;
 		}
-		
-		void setSnowDepth()
+		void setSnowDepth(double y)
 		{	
 			snowDepth = y;
 		}
+		void getData()
+		{	
+			cout << "\tDate: " << snowDate << "\n\t" << snowDepth << endl;
+		}
+		
 		
 };
 
-void inputFunction();
 void objectFunction(int startDate, double snowDepth);
 
 int main()
 {
-	inputFunction();
-	objectFunction();
+	string month;
+	int startDate = 0;
+	double snowDepth = 0;
+	
+	cout << "Name of the Month" << endl;
+	cin >> month;
+	cout << "Starting Date" << endl;
+	cin >> startDate;
+		
+	objectFunction(startDate, snowDepth);
+	//~ objectFunction();
 	
 	return 0;
 	
 }
 	
-void inputFunction()
-{
-	string month;
-	int startDate;
-	double snowDepth;
-	
-	cout << "Name of the Month" << endl;
-	cin >> month;
-	
-	cout << "Starting Date" << endl;
-	cin >> startDate;
-	//~ SnowTracker snowData[WEEK];
-	for(int i = 0; i < WEEK; i++)
-	{
-	cout << "Seven base snow depths for that week" << endl;
-	cin >> snowDepth;
-	};
-	
-}
 void objectFunction(int startDate, double snowDepth)
 {
-	SnowTracker snowDayDepth;
-	snowData[i].setMemberFunction(startDate);
-	SnowTracker::s_GetTotalSnowDepth
+	SnowTracker snowData[WEEK];
+	
+	for(int i = 0; i < WEEK; i++)
+	{
+		snowData[i].setSnowDate(startDate + i);
+		cout << "Please enter the snow depth for the day of " << i + startDate << endl;
+		cin >> snowDepth;
+		
+		snowData[i].setSnowDepth(snowDepth);
+		//~ snowData[1].getData();
+		
+	};
+	
 }
 
