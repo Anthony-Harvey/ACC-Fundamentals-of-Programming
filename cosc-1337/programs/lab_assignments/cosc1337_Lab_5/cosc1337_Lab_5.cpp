@@ -68,33 +68,35 @@ class SnowTracker
 		}
 		void getData()
 		{	
-			cout << "\tDate: " << snowDate << "\n\t" << snowDepth << endl;
+			cout << setw(12) << snowDate << setw(12) << snowDepth << endl;
 		}
 		
 		
 };
 
 void objectFunction(int startDate, double snowDepth);
+void outputFunction(string month);
 
 int main()
 {
 	string month;
 	int startDate = 0;
+	int* snowData;
 	double snowDepth = 0;
 	
 	cout << "Name of the Month" << endl;
 	cin >> month;
 	cout << "Starting Date" << endl;
 	cin >> startDate;
-		
-	objectFunction(startDate, snowDepth);
-	//~ objectFunction();
+	
+	snowData = objectFunction(startDate, snowDepth);
+	outputFunction(month);
 	
 	return 0;
 	
 }
 	
-void objectFunction(int startDate, double snowDepth)
+int* objectFunction(int startDate, double snowDepth)
 {
 	SnowTracker snowData[WEEK];
 	
@@ -105,9 +107,20 @@ void objectFunction(int startDate, double snowDepth)
 		cin >> snowDepth;
 		
 		snowData[i].setSnowDepth(snowDepth);
-		//~ snowData[1].getData();
 		
 	};
-	
+	return snowData[];
 }
+
+void outputFunction(string month, snowData)
+{
+	//~ receive pointer to array of objects
+	
+	cout << setw(12) << "Date" << setw(12) << month << endl;
+	for(int i =0; i < WEEK; i++)
+	{
+		//~ snowData[i].getData();
+	}
+}
+
 
