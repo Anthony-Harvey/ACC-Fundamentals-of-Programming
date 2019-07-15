@@ -27,7 +27,7 @@
 
 #include <iostream>
 #include <iomanip>	//	Necessary?
-#include <string>	//	Necessary?
+#include <string>
 
 using namespace std;
 
@@ -37,7 +37,7 @@ class SnowTracker
 {	
 	int startDate = 0;
 	int snowDate = 0;
-	double snowDepth = 0;
+	double snowDepth = 0.0;
 	
 	//	totalSnowDepth should sum each objects snowDepth
 	//~ static double s_TotalSnowDepth;
@@ -48,7 +48,7 @@ class SnowTracker
 		SnowTracker()
 		{
 		}
-		SnowTracker(int x, int y)
+		SnowTracker(int x, double y)
 		{
 			snowDate = x;
 			snowDepth = y;
@@ -66,6 +66,10 @@ class SnowTracker
 		{	
 			snowDepth = y;
 		}
+		int getSnowDate()
+		{
+			return snowDate;
+		}
 		int getSnowDepth()
 		{
 			return snowDepth;
@@ -79,14 +83,14 @@ class SnowTracker
 };
 
 void objectFunction(int startDate, double snowDepth, SnowTracker objectArray[]);
+void sortArray(SnowTracker objectArray[]);
 void outputFunction(string month, SnowTracker objectArray[]);
 
 int main()
 {
 	string month;
-	int startDate = 0;
-	//~ int* snowData;
-	double snowDepth = 0;
+	int startDate;
+	double snowDepth;
 	
 	SnowTracker objectArray[WEEK];
 	
@@ -97,24 +101,29 @@ int main()
 	cin >> startDate;
 	
 	objectFunction(startDate, snowDepth, objectArray);
-	
+	sortArray(objectArray);
 	outputFunction(month, objectArray);
 	
 	return 0;
 	
 }
-	
+
 void objectFunction(int startDate, double snowDepth, SnowTracker objectArray[])
 {
-	//~ SnowTracker snowData[WEEK];
-	//~ int snowDepth = 0;
-	
 	for(int i = 0; i < WEEK; i++)
 	{
 		
 		objectArray[i].setSnowDate(startDate + i);
 		cout << "Please enter the snow depth for the day of " << i + startDate << endl;
-		cin >> snowDepth;
+		while (!(cin >> snowDepth) || snowDepth < 0)
+		{
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << "Please ensure your entry is a positve integer." << endl;
+		}
+		
+		//	Debug line below:
+		cout << "Snow Depth Entered: " << snowDepth << endl;
 		
 		objectArray[i].setSnowDepth(snowDepth);
 		
@@ -122,18 +131,54 @@ void objectFunction(int startDate, double snowDepth, SnowTracker objectArray[])
 	//~ return objectArray[];
 }
 
+void sortArray(SnowTracker objectArray[])
+{
+	int tempDate;
+	double tempDepth;
+	bool swapMade;
+	
+	do
+	{
+		swapMade = false;
+		for(int i =0; i < WEEK -1; i++)
+		{
+			if (objectArray[i].getSnowDepth() > objectArray[i+1].getSnowDepth())
+			{
+				//	The objective:
+				//		Preserve Object[i]s member variables
+				//		Retrieve and assign Object[i+1]s member variables to Object[i]
+				//		Assign preserved Object[i]s member variables to  Object[i+1]
+				
+				tempDepth = objectArray[i].getSnowDepth();
+				tempDate =  objectArray[i].getSnowDate();
+				
+				cout << "Temp Variable Data: " << tempDepth << "_" << tempDate << endl;
+				cout << objectArray[i].getSnowDepth() << "<i and i+1>" << objectArray[i+1].getSnowDepth() << endl;
+				cout << objectArray[i].getSnowDate() << "<i and i+1>" << objectArray[i+1].getSnowDate() << endl;
+				
+				objectArray[i].setSnowDepth(objectArray[i+1].getSnowDepth());
+				objectArray[i].setSnowDate(objectArray[i+1].getSnowDate());
+				
+				objectArray[i+1].setSnowDepth(tempDepth);
+				objectArray[i+1].setSnowDate(tempDate);
+				
+				swapMade = true;
+			}	
+					
+		}
+	}	
+	while(swapMade);
+	
+}
 void outputFunction(string month, SnowTracker objectArray[])
 {
-	//~ receive pointer to array of objects
 	cout << setw(12) << "Date in: " << endl;	
 	cout << setw(12) << month << setw(12) << "Snow Depth" << endl;
 	cout << "------------------------------------" << endl;
-
 	for(int i =0; i < WEEK; i++)
 	{
-		if (objectArray[i].getSnowDepth =
 		objectArray[i].getData();
 	}
+
+
 }
-
-
