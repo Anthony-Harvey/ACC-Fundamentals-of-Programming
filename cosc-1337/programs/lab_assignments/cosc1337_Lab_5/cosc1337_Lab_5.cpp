@@ -66,6 +66,10 @@ class SnowTracker
 		{	
 			snowDepth = y;
 		}
+		int getSnowDepth()
+		{
+			return snowDepth;
+		}
 		void getData()
 		{	
 			cout << setw(12) << snowDate << setw(12) << snowDepth << endl;
@@ -74,52 +78,61 @@ class SnowTracker
 		
 };
 
-void objectFunction(int startDate, double snowDepth);
-void outputFunction(string month);
+void objectFunction(int startDate, double snowDepth, SnowTracker objectArray[]);
+void outputFunction(string month, SnowTracker objectArray[]);
 
 int main()
 {
 	string month;
 	int startDate = 0;
-	int* snowData;
+	//~ int* snowData;
 	double snowDepth = 0;
+	
+	SnowTracker objectArray[WEEK];
+	
 	
 	cout << "Name of the Month" << endl;
 	cin >> month;
 	cout << "Starting Date" << endl;
 	cin >> startDate;
 	
-	snowData = objectFunction(startDate, snowDepth);
-	outputFunction(month);
+	objectFunction(startDate, snowDepth, objectArray);
+	
+	outputFunction(month, objectArray);
 	
 	return 0;
 	
 }
 	
-int* objectFunction(int startDate, double snowDepth)
+void objectFunction(int startDate, double snowDepth, SnowTracker objectArray[])
 {
-	SnowTracker snowData[WEEK];
+	//~ SnowTracker snowData[WEEK];
+	//~ int snowDepth = 0;
 	
 	for(int i = 0; i < WEEK; i++)
 	{
-		snowData[i].setSnowDate(startDate + i);
+		
+		objectArray[i].setSnowDate(startDate + i);
 		cout << "Please enter the snow depth for the day of " << i + startDate << endl;
 		cin >> snowDepth;
 		
-		snowData[i].setSnowDepth(snowDepth);
+		objectArray[i].setSnowDepth(snowDepth);
 		
 	};
-	return snowData[];
+	//~ return objectArray[];
 }
 
-void outputFunction(string month, snowData)
+void outputFunction(string month, SnowTracker objectArray[])
 {
 	//~ receive pointer to array of objects
-	
-	cout << setw(12) << "Date" << setw(12) << month << endl;
+	cout << setw(12) << "Date in: " << endl;	
+	cout << setw(12) << month << setw(12) << "Snow Depth" << endl;
+	cout << "------------------------------------" << endl;
+
 	for(int i =0; i < WEEK; i++)
 	{
-		//~ snowData[i].getData();
+		if (objectArray[i].getSnowDepth =
+		objectArray[i].getData();
 	}
 }
 
