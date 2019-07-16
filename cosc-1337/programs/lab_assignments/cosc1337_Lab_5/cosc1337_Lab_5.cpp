@@ -1,3 +1,8 @@
+//	Anthony Harvey
+//	Class:	cosc1337
+//	Professor: Sravan Kumpati
+//	Lab Assignment: 5
+
 	//	Chapter 9, pg.642
 	//	
 	//	Write a program that can be used by a ski resort to keep track of local snow conditions for one week.
@@ -24,6 +29,9 @@
 	//		14				42.8
 	//
 	//
+	//	Notes:
+	//	-	I notice the assignment doesn't really mention input validation at all..
+	//	-	I didn't set this program to accurately follow the number of days in a given month.
 
 #include <iostream>
 #include <iomanip>	//	Necessary?
@@ -37,10 +45,10 @@ class SnowTracker
 {	
 	int startDate = 0;
 	int snowDate = 0;
-	double snowDepth = 0.0;
+	float snowDepth = 0.0;
 	
 	//	totalSnowDepth should sum each objects snowDepth
-	//~ static double s_TotalSnowDepth;
+	//~ static float s_TotalSnowDepth;
 	
 	private:
 	
@@ -48,13 +56,13 @@ class SnowTracker
 		SnowTracker()
 		{
 		}
-		SnowTracker(int x, double y)
+		SnowTracker(int x, float y)
 		{
 			snowDate = x;
 			snowDepth = y;
 		}
 		
-		//~ static double s_GetTotalSnowDepth()
+		//~ static float s_GetTotalSnowDepth()
 		//~ {
 			
 		//~ }
@@ -62,7 +70,7 @@ class SnowTracker
 		{
 			snowDate = x;
 		}
-		void setSnowDepth(double y)
+		void setSnowDepth(float y)
 		{	
 			snowDepth = y;
 		}
@@ -70,27 +78,24 @@ class SnowTracker
 		{
 			return snowDate;
 		}
-		int getSnowDepth()
+		float getSnowDepth()
 		{
 			return snowDepth;
 		}
 		void getData()
 		{	
 			cout << setw(12) << snowDate << setw(12) << snowDepth << endl;
-		}
-		
-		
+		}	
 };
 
-void objectFunction(int startDate, double snowDepth, SnowTracker objectArray[]);
+void objectFunction(int startDate, SnowTracker objectArray[]);
 void sortArray(SnowTracker objectArray[]);
-void outputFunction(string month, SnowTracker objectArray[]);
+void outputFunction(string month, int startDate, SnowTracker objectArray[]);
 
 int main()
 {
 	string month;
 	int startDate;
-	double snowDepth;
 	
 	SnowTracker objectArray[WEEK];
 	
@@ -100,16 +105,18 @@ int main()
 	cout << "Starting Date" << endl;
 	cin >> startDate;
 	
-	objectFunction(startDate, snowDepth, objectArray);
+	objectFunction(startDate, objectArray);
 	sortArray(objectArray);
-	outputFunction(month, objectArray);
+	outputFunction(month, startDate, objectArray);
 	
 	return 0;
 	
 }
 
-void objectFunction(int startDate, double snowDepth, SnowTracker objectArray[])
+void objectFunction(int startDate, SnowTracker objectArray[])
 {
+	float snowDepth;
+	
 	for(int i = 0; i < WEEK; i++)
 	{
 		
@@ -119,14 +126,13 @@ void objectFunction(int startDate, double snowDepth, SnowTracker objectArray[])
 		{
 			cin.clear();
 			cin.ignore(1000, '\n');
-			cout << "Please ensure your entry is a positve integer." << endl;
+			cout << "Please ensure your entry is a positve number." << endl;
 		}
 		
 		//	Debug line below:
-		cout << "Snow Depth Entered: " << snowDepth << endl;
+		//~ cout << "Snow Depth Entered: " << snowDepth << endl;
 		
 		objectArray[i].setSnowDepth(snowDepth);
-		
 	};
 	//~ return objectArray[];
 }
@@ -134,13 +140,13 @@ void objectFunction(int startDate, double snowDepth, SnowTracker objectArray[])
 void sortArray(SnowTracker objectArray[])
 {
 	int tempDate;
-	double tempDepth;
+	float tempDepth;
 	bool swapMade;
 	
 	do
 	{
 		swapMade = false;
-		for(int i =0; i < WEEK -1; i++)
+		for(int i = 0; i < WEEK -1; i++)
 		{
 			if (objectArray[i].getSnowDepth() > objectArray[i+1].getSnowDepth())
 			{
@@ -151,10 +157,6 @@ void sortArray(SnowTracker objectArray[])
 				
 				tempDepth = objectArray[i].getSnowDepth();
 				tempDate =  objectArray[i].getSnowDate();
-				
-				cout << "Temp Variable Data: " << tempDepth << "_" << tempDate << endl;
-				cout << objectArray[i].getSnowDepth() << "<i and i+1>" << objectArray[i+1].getSnowDepth() << endl;
-				cout << objectArray[i].getSnowDate() << "<i and i+1>" << objectArray[i+1].getSnowDate() << endl;
 				
 				objectArray[i].setSnowDepth(objectArray[i+1].getSnowDepth());
 				objectArray[i].setSnowDate(objectArray[i+1].getSnowDate());
@@ -168,17 +170,15 @@ void sortArray(SnowTracker objectArray[])
 		}
 	}	
 	while(swapMade);
-	
 }
-void outputFunction(string month, SnowTracker objectArray[])
+
+void outputFunction(string month, int startDate, SnowTracker objectArray[])
 {
-	cout << setw(12) << "Date in: " << endl;	
-	cout << setw(12) << month << setw(12) << "Snow Depth" << endl;
+	cout << setw(12) << month << " " << startDate << "-" << startDate + (WEEK - 1) << endl;	
+	cout << setw(12) << "Date" << setw(12) << "Snow Depth" << endl;
 	cout << "------------------------------------" << endl;
 	for(int i =0; i < WEEK; i++)
 	{
 		objectArray[i].getData();
 	}
-
-
 }
