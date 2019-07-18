@@ -5,11 +5,17 @@
 //	DUE:		
 
 	//	Write a program that can determine the number of days in a month for a specified month and year.
-	//	The program should allow a user to enter two integers representing a month and a year, and it should determine how many days are in the specified month.
+	//	
+	//	The program should allow a user to enter the following:
+	//		Month Number
+	//		Year Number
+	//
 	//	The integers 1 through 12 will be used to identify the months of January through Decemeber.
 	//	The user indicates the end of input by entering 0 for the month and year.
 	//	
-	//	At that point, the program prints the number of days in the current month and terminates.
+	//	It should perform the following:
+	//		Determine how many days are in the specified month
+	//		Output the number of days in the current month
 	//	
 	//	Use the following creiteria to identify Leap Years:
 	//	1.	'Y' is divisible by 100.
@@ -25,3 +31,10 @@
 	//			29 days
 	//		Enter month and year: 0 0[ENTER]
 	//			The current month, September 2009, has 30 days.
+
+Outline:
+	Create two linked lists:
+		monthName
+		monthDays
+	
+	When the user is prompted for the Date ( Year, Month, Day )
