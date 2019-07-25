@@ -32,9 +32,63 @@
 	//		Enter month and year: 0 0[ENTER]
 	//			The current month, September 2009, has 30 days.
 
-Outline:
-	Create two linked lists:
-		monthName
-		monthDays
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+const int daysInMonth[ ] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+const string monthName[ ]= {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
+bool leapYearFunction(int year);
+void outputFunction(int year, int month, bool leapYear);
+
+int main()
+{
+
+	bool leapYear = false;
+	int year, month;
 	
-	When the user is prompted for the Date ( Year, Month, Day )
+	//	User is prompted for the Date ( Year, Month )
+	cout << "To calculate the number of days in any given month, please enter the Year and Month in whole numbers only: ";
+	cout << "(example: 1985 12)\n\t";
+	
+	cin >> year >> month;
+	cout << year << month << endl;
+	
+	leapYear = leapYearFunction(year);
+	outputFunction(year, month, leapYear);
+	return 0;
+}
+
+bool leapYearFunction(int year)
+{
+	bool leapYear = false; 
+	
+	if(year % 4 && year % 100)
+		leapYear = year % 400;
+	
+	if(year % 4 && !(year % 100))
+		leapYear = true;
+		
+	cout << "leapYear is currently set to: " << leapYear << endl;
+	return leapYear;
+}
+	
+void outputFunction(int year, int month, bool leapYear)
+{
+	int days;
+	
+	days = daysInMonth[month - 1];
+	if(leapYear == true)
+	{
+		cout << "The provided year is a Leap Year. With that in mind, we have the following results: \n\t";
+		days++;
+	}
+	else
+	{
+		cout << "The provided year is not a Leap Year. With that in mind, we have the following results: \n\t";
+	}
+		
+	cout << "In the year " << year << "," << monthName[month+1] << " has " << days << " days." << endl;
+}
